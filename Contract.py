@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-class Contract:
+
+class Contact:
     def __init__(self, name, phone_number, e_mail, addr):
         self.name = name
         self.phone_number = phone_number
@@ -20,7 +21,9 @@ def set_contact():
     e_mail = input("E-mail : ")
     addr = input("Address : ")
 
-    print(name, phone_number, e_mail, addr)
+    contact = Contact(name, phone_number, e_mail, addr)
+
+    return contact
 
 
 def print_menu():
@@ -37,9 +40,14 @@ def print_menu():
 
 
 def run():
+    contact_list = []
+
     while 1:
         # getting input
         menu = print_menu()
+        if menu ==1:
+            contact = set_contact();
+            contact_list.append(contact)
         if menu == 4:
             break;
 
