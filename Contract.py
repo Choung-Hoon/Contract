@@ -59,7 +59,6 @@ def print_contact(contact_list):
     """
 
     print("2. 연락처 출력")
-    print("-------------------------------------")
     for contact in contact_list:
         contact.print_info()
 
@@ -69,6 +68,15 @@ def delete_contact(contact_list, name):
     for i, target in enumerate(contact_list):
         if name == target:
             del contact_list[i]
+
+
+def store_contact(contact_list):
+    with open("contact_db.txt", mode="wt", encoding='utf-8') as f:
+        for contact in contact_list:
+            f.write(contact.name + '\n')
+            f.write(contact.phone_number+ '\n')
+            f.write(contact.e_mail + '\n')
+            f.write(contact.addr + '\n')
 
 
 def run():
@@ -86,6 +94,7 @@ def run():
             name = input("Name : ")
             delete_contact(contact_list, name)
         elif menu == 4:
+            store_contact(contact_list)
             break
         else:
             print("잘못 입력하였습니다. 메뉴를 다시 입력하세요")
