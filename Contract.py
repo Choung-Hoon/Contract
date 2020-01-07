@@ -9,6 +9,7 @@ class Contact:
         self.addr = addr
 
     def print_info(self):
+        print("-------------------------------------")
         print("Name : %s" % self.name)
         print("Phone_number : %s" % self.phone_number)
         print("E-mail : %s" % self.e_mail)
@@ -16,6 +17,9 @@ class Contact:
 
 
 def set_contact():
+    print("-------------------------------------")
+    print("1. 연락처 입력")
+    print("-------------------------------------")
     name = input("Name : ")
     phone_number = input("Phone Number : ")
     e_mail = input("E-mail : ")
@@ -31,12 +35,12 @@ def print_menu():
     show menu and get input
     :return: returns menu id
     """
-
+    print("-------------------------------------")
     print("1. 연락처 입력")
     print("2. 연락처 출력")
     print("3. 연락서 삭제")
     print("4. 종료")
-
+    print("-------------------------------------")
     menu = input("메뉴선택 : ")
     try:
         menu = int(menu)
@@ -53,8 +57,18 @@ def print_contact(contact_list):
     :param contact_list: 
     :return: None
     """
+
+    print("2. 연락처 출력")
+    print("-------------------------------------")
     for contact in contact_list:
         contact.print_info()
+
+
+def delete_contact(contact_list, name):
+    print("3. 연락처 삭제")
+    for i, target in enumerate(contact_list):
+        if name == target:
+            del contact_list[i]
 
 
 def run():
@@ -64,12 +78,13 @@ def run():
         # getting input
         menu = print_menu()
         if menu == 1:
-            contact = set_contact();
+            contact = set_contact()
             contact_list.append(contact)
         elif menu == 2:
             print_contact(contact_list)
         elif menu == 3:
-            break
+            name = input("Name : ")
+            delete_contact(contact_list, name)
         elif menu == 4:
             break
         else:
