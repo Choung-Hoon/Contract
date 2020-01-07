@@ -57,7 +57,7 @@ def print_contact(contact_list):
     :param contact_list: 
     :return: None
     """
-
+    print("-------------------------------------")
     print("2. 연락처 출력")
     for contact in contact_list:
         contact.print_info()
@@ -66,7 +66,7 @@ def print_contact(contact_list):
 def delete_contact(contact_list, name):
     print("3. 연락처 삭제")
     for i, target in enumerate(contact_list):
-        if name == target:
+        if name == target.name:
             del contact_list[i]
 
 
@@ -74,13 +74,35 @@ def store_contact(contact_list):
     with open("contact_db.txt", mode="wt", encoding='utf-8') as f:
         for contact in contact_list:
             f.write(contact.name + '\n')
-            f.write(contact.phone_number+ '\n')
+            f.write(contact.phone_number + '\n')
             f.write(contact.e_mail + '\n')
             f.write(contact.addr + '\n')
 
 
+def load_contact(contact_list):
+    """
+    read contact-file and load into contact_list
+    :param contact_list:
+    :return: None
+    """
+    with open("contact_db.txt", mode="rt", encoding="utf-8") as f:
+        lines = f.readlines()
+        num = len(lines) / 4
+        num = int(num)
+
+        for i in range(num):
+            # 4줄 단위로 하나의 사람 정보임
+            name = lines[4 * i].rstrip('\n')
+            phone = lines[4 * i + 1].rstrip('\n')
+            email = lines[4 * i + 2].rstrip('\n')
+            addr = lines[4 * i + 3].rstrip('\n')
+            contact = Contact(name, phone, email, addr)
+            contact_list.append(contact)
+
+
 def run():
     contact_list = []
+    load_contact(contact_list)
 
     while 1:
         # getting input
