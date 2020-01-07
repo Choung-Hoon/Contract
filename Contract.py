@@ -23,8 +23,25 @@ def set_contact():
     print(name, phone_number, e_mail, addr)
 
 
+def print_menu():
+    '''
+    show menu and get input
+    :return: returns menu id
+    '''
+    print("1. 연락처 입력")
+    print("2. 연락처 출력")
+    print("3. 연락서 삭제")
+    print("4. 종료")
+
+    return int(input("메뉴선택 : "))
+
+
 def run():
-    set_contact()
+    while 1:
+        # getting input
+        menu = print_menu()
+        if menu == 4:
+            break;
 
 
 if __name__ == "__main__":
