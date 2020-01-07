@@ -14,9 +14,17 @@ class Contract:
         print("Address : %s" % self.addr)
 
 
+def set_contact():
+    name = input("Name : ")
+    phone_number = input("Phone Number : ")
+    e_mail = input("E-mail : ")
+    addr = input("Address : ")
+
+    print(name, phone_number, e_mail, addr)
+
+
 def run():
-    kim = Contract("김정훈", "010-2755-1607", "nobel77@naver.com", "SEOUL")
-    kim.print_info()
+    set_contact()
 
 
 if __name__ == "__main__":
